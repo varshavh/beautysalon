@@ -1,0 +1,15 @@
+C:\Users\varsha v hegde\onedrive\ドキュメント\visual studio 2010\Projects\BEAUTYSALON1\BEAUTYSALON1\obj\x86\Debug\BEAUTYSALON1.MAINFORM.resources
+C:\Users\varsha v hegde\onedrive\ドキュメント\visual studio 2010\Projects\BEAUTYSALON1\BEAUTYSALON1\obj\x86\Debug\BEAUTYSALON1.Resources.resources
+C:\Users\varsha v hegde\onedrive\ドキュメント\visual studio 2010\Projects\BEAUTYSALON1\BEAUTYSALON1\obj\x86\Debug\BEAUTYSALON1.vbproj.GenerateResource.Cache
+C:\Users\varsha v hegde\OneDrive\ドキュメント\Visual Studio 2010\Projects\BEAUTYSALON1\BEAUTYSALON1\obj\x86\Debug\BEAUTYSALON1.login.resources
+C:\Users\varsha v hegde\OneDrive\ドキュメント\Visual Studio 2010\Projects\BEAUTYSALON1\BEAUTYSALON1\bin\Debug\BEAUTYSALON1.exe
+C:\Users\varsha v hegde\OneDrive\ドキュメント\Visual Studio 2010\Projects\BEAUTYSALON1\BEAUTYSALON1\bin\Debug\BEAUTYSALON1.pdb
+C:\Users\varsha v hegde\OneDrive\ドキュメント\Visual Studio 2010\Projects\BEAUTYSALON1\BEAUTYSALON1\bin\Debug\BEAUTYSALON1.xml
+C:\Users\varsha v hegde\OneDrive\ドキュメント\Visual Studio 2010\Projects\BEAUTYSALON1\BEAUTYSALON1\obj\x86\Debug\BEAUTYSALON1.exe
+C:\Users\varsha v hegde\OneDrive\ドキュメント\Visual Studio 2010\Projects\BEAUTYSALON1\BEAUTYSALON1\obj\x86\Debug\BEAUTYSALON1.xml
+C:\Users\varsha v hegde\OneDrive\ドキュメント\Visual Studio 2010\Projects\BEAUTYSALON1\BEAUTYSALON1\obj\x86\Debug\BEAUTYSALON1.pdb
+C:\Users\varsha v hegde\onedrive\ドキュメント\visual studio 2010\Projects\BEAUTYSALON1\BEAUTYSALON1\obj\x86\Debug\BEAUTYSALON1.FEEDBACK.resources
+C:\Users\varsha v hegde\onedrive\ドキュメント\visual studio 2010\Projects\BEAUTYSALON1\BEAUTYSALON1\obj\x86\Debug\BEAUTYSALON1.PAYMENT.resources
+C:\Users\varsha v hegde\onedrive\ドキュメント\visual studio 2010\Projects\BEAUTYSALON1\BEAUTYSALON1\obj\x86\Debug\BEAUTYSALON1.CUSTOMERS.resources
+C:\Users\varsha v hegde\onedrive\ドキュメント\visual studio 2010\Projects\BEAUTYSALON1\BEAUTYSALON1\obj\x86\Debug\BEAUTYSALON1.APPOINTMENT1.resources
+C:\Users\varsha v hegde\onedrive\ドキュメント\visual studio 2010\Projects\BEAUTYSALON1\BEAUTYSALON1\obj\x86\Debug\BEAUTYSALON1.REGISTER.resources
