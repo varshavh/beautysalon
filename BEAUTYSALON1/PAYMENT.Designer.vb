@@ -25,11 +25,10 @@ Partial Class PAYMENT
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(PAYMENT))
         Me.label10 = New System.Windows.Forms.Label()
         Me.label9 = New System.Windows.Forms.Label()
-        Me.button4 = New System.Windows.Forms.Button()
-        Me.button3 = New System.Windows.Forms.Button()
-        Me.button2 = New System.Windows.Forms.Button()
+        Me.btnBack = New System.Windows.Forms.Button()
+        Me.btnPay = New System.Windows.Forms.Button()
+        Me.btnCancel = New System.Windows.Forms.Button()
         Me.label7 = New System.Windows.Forms.Label()
-        Me.ExpYear = New System.Windows.Forms.TextBox()
         Me.label2 = New System.Windows.Forms.Label()
         Me.HolderName = New System.Windows.Forms.TextBox()
         Me.label1 = New System.Windows.Forms.Label()
@@ -42,9 +41,10 @@ Partial Class PAYMENT
         Me.ExpMonth = New System.Windows.Forms.ComboBox()
         Me.Label11 = New System.Windows.Forms.Label()
         Me.pictureBox3 = New System.Windows.Forms.PictureBox()
-        Me.Name = New System.Windows.Forms.Label()
+        Me.CustName = New System.Windows.Forms.Label()
         Me.Label5 = New System.Windows.Forms.Label()
         Me.Amount = New System.Windows.Forms.TextBox()
+        Me.ExpYear = New System.Windows.Forms.ComboBox()
         CType(Me.pictureBox3, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -70,47 +70,47 @@ Partial Class PAYMENT
         Me.label9.TabIndex = 73
         Me.label9.Text = "DevelopedByTechTeam"
         '
-        'button4
+        'btnBack
         '
-        Me.button4.BackColor = System.Drawing.Color.Lime
-        Me.button4.FlatAppearance.BorderSize = 0
-        Me.button4.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.button4.Font = New System.Drawing.Font("Microsoft YaHei", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.button4.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.button4.Location = New System.Drawing.Point(632, 711)
-        Me.button4.Name = "button4"
-        Me.button4.Size = New System.Drawing.Size(116, 40)
-        Me.button4.TabIndex = 72
-        Me.button4.Text = "BACK"
-        Me.button4.UseVisualStyleBackColor = False
+        Me.btnBack.BackColor = System.Drawing.Color.Lime
+        Me.btnBack.FlatAppearance.BorderSize = 0
+        Me.btnBack.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnBack.Font = New System.Drawing.Font("Microsoft YaHei", 9.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnBack.ForeColor = System.Drawing.SystemColors.ButtonHighlight
+        Me.btnBack.Location = New System.Drawing.Point(632, 711)
+        Me.btnBack.Name = "btnBack"
+        Me.btnBack.Size = New System.Drawing.Size(116, 40)
+        Me.btnBack.TabIndex = 72
+        Me.btnBack.Text = "BACK"
+        Me.btnBack.UseVisualStyleBackColor = False
         '
-        'button3
+        'btnPay
         '
-        Me.button3.BackColor = System.Drawing.Color.Aqua
-        Me.button3.FlatAppearance.BorderSize = 0
-        Me.button3.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.button3.Font = New System.Drawing.Font("Microsoft YaHei", 10.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.button3.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.button3.Location = New System.Drawing.Point(545, 653)
-        Me.button3.Name = "button3"
-        Me.button3.Size = New System.Drawing.Size(105, 32)
-        Me.button3.TabIndex = 71
-        Me.button3.Text = "PAY"
-        Me.button3.UseVisualStyleBackColor = False
+        Me.btnPay.BackColor = System.Drawing.Color.Aqua
+        Me.btnPay.FlatAppearance.BorderSize = 0
+        Me.btnPay.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnPay.Font = New System.Drawing.Font("Microsoft YaHei", 10.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnPay.ForeColor = System.Drawing.SystemColors.ButtonHighlight
+        Me.btnPay.Location = New System.Drawing.Point(545, 653)
+        Me.btnPay.Name = "btnPay"
+        Me.btnPay.Size = New System.Drawing.Size(105, 32)
+        Me.btnPay.TabIndex = 71
+        Me.btnPay.Text = "PAY"
+        Me.btnPay.UseVisualStyleBackColor = False
         '
-        'button2
+        'btnCancel
         '
-        Me.button2.BackColor = System.Drawing.Color.Red
-        Me.button2.FlatAppearance.BorderSize = 0
-        Me.button2.FlatStyle = System.Windows.Forms.FlatStyle.Flat
-        Me.button2.Font = New System.Drawing.Font("Microsoft YaHei", 10.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.button2.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.button2.Location = New System.Drawing.Point(740, 653)
-        Me.button2.Name = "button2"
-        Me.button2.Size = New System.Drawing.Size(114, 32)
-        Me.button2.TabIndex = 70
-        Me.button2.Text = "RESET"
-        Me.button2.UseVisualStyleBackColor = False
+        Me.btnCancel.BackColor = System.Drawing.Color.Red
+        Me.btnCancel.FlatAppearance.BorderSize = 0
+        Me.btnCancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat
+        Me.btnCancel.Font = New System.Drawing.Font("Microsoft YaHei", 10.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.btnCancel.ForeColor = System.Drawing.SystemColors.ButtonHighlight
+        Me.btnCancel.Location = New System.Drawing.Point(740, 653)
+        Me.btnCancel.Name = "btnCancel"
+        Me.btnCancel.Size = New System.Drawing.Size(114, 32)
+        Me.btnCancel.TabIndex = 70
+        Me.btnCancel.Text = "RESET"
+        Me.btnCancel.UseVisualStyleBackColor = False
         '
         'label7
         '
@@ -122,18 +122,6 @@ Partial Class PAYMENT
         Me.label7.Size = New System.Drawing.Size(209, 31)
         Me.label7.TabIndex = 66
         Me.label7.Text = "EXPIRY MONTH"
-        '
-        'ExpYear
-        '
-        Me.ExpYear.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.ExpYear.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.ExpYear.Location = New System.Drawing.Point(717, 417)
-        Me.ExpYear.Multiline = True
-        Me.ExpYear.Name = "ExpYear"
-        Me.ExpYear.RightToLeft = System.Windows.Forms.RightToLeft.No
-        Me.ExpYear.Size = New System.Drawing.Size(257, 40)
-        Me.ExpYear.TabIndex = 65
-        Me.ExpYear.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'label2
         '
@@ -267,14 +255,14 @@ Partial Class PAYMENT
         Me.pictureBox3.TabIndex = 86
         Me.pictureBox3.TabStop = False
         '
-        'Name
+        'CustName
         '
-        Me.Name.AutoSize = True
-        Me.Name.Location = New System.Drawing.Point(1171, 32)
-        Me.Name.Name = "Name"
-        Me.Name.Size = New System.Drawing.Size(51, 17)
-        Me.Name.TabIndex = 87
-        Me.Name.Text = "Label5"
+        Me.CustName.AutoSize = True
+        Me.CustName.Location = New System.Drawing.Point(1171, 32)
+        Me.CustName.Name = "CustName"
+        Me.CustName.Size = New System.Drawing.Size(51, 17)
+        Me.CustName.TabIndex = 87
+        Me.CustName.Text = "Label5"
         '
         'Label5
         '
@@ -299,14 +287,24 @@ Partial Class PAYMENT
         Me.Amount.TabIndex = 88
         Me.Amount.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
+        'ExpYear
+        '
+        Me.ExpYear.FormattingEnabled = True
+        Me.ExpYear.Items.AddRange(New Object() {"2025", "2026", "2027", "2028", "2029", "2030", "2031", "2032", "2033", "2034", "2035"})
+        Me.ExpYear.Location = New System.Drawing.Point(717, 433)
+        Me.ExpYear.Name = "ExpYear"
+        Me.ExpYear.Size = New System.Drawing.Size(257, 24)
+        Me.ExpYear.TabIndex = 90
+        '
         'PAYMENT
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(1347, 869)
+        Me.Controls.Add(Me.ExpYear)
         Me.Controls.Add(Me.Label5)
         Me.Controls.Add(Me.Amount)
-        Me.Controls.Add(Me.Name)
+        Me.Controls.Add(Me.CustName)
         Me.Controls.Add(Me.pictureBox3)
         Me.Controls.Add(Me.Label11)
         Me.Controls.Add(Me.ExpMonth)
@@ -317,11 +315,10 @@ Partial Class PAYMENT
         Me.Controls.Add(Me.Label3)
         Me.Controls.Add(Me.label10)
         Me.Controls.Add(Me.label9)
-        Me.Controls.Add(Me.button4)
-        Me.Controls.Add(Me.button3)
-        Me.Controls.Add(Me.button2)
+        Me.Controls.Add(Me.btnBack)
+        Me.Controls.Add(Me.btnPay)
+        Me.Controls.Add(Me.btnCancel)
         Me.Controls.Add(Me.label7)
-        Me.Controls.Add(Me.ExpYear)
         Me.Controls.Add(Me.label2)
         Me.Controls.Add(Me.HolderName)
         Me.Controls.Add(Me.label1)
@@ -338,11 +335,10 @@ Partial Class PAYMENT
     End Sub
     Private WithEvents label10 As System.Windows.Forms.Label
     Private WithEvents label9 As System.Windows.Forms.Label
-    Private WithEvents button4 As System.Windows.Forms.Button
-    Private WithEvents button3 As System.Windows.Forms.Button
-    Private WithEvents button2 As System.Windows.Forms.Button
+    Private WithEvents btnBack As System.Windows.Forms.Button
+    Private WithEvents btnPay As System.Windows.Forms.Button
+    Private WithEvents btnCancel As System.Windows.Forms.Button
     Private WithEvents label7 As System.Windows.Forms.Label
-    Private WithEvents ExpYear As System.Windows.Forms.TextBox
     Private WithEvents label2 As System.Windows.Forms.Label
     Private WithEvents HolderName As System.Windows.Forms.TextBox
     Private WithEvents label1 As System.Windows.Forms.Label
@@ -355,7 +351,8 @@ Partial Class PAYMENT
     Friend WithEvents ExpMonth As System.Windows.Forms.ComboBox
     Private WithEvents Label11 As System.Windows.Forms.Label
     Private WithEvents pictureBox3 As System.Windows.Forms.PictureBox
-    Friend WithEvents Name As System.Windows.Forms.Label
+    Friend WithEvents CustName As System.Windows.Forms.Label
     Private WithEvents Label5 As System.Windows.Forms.Label
     Private WithEvents Amount As System.Windows.Forms.TextBox
+    Friend WithEvents ExpYear As System.Windows.Forms.ComboBox
 End Class

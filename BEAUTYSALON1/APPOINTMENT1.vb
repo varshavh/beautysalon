@@ -140,6 +140,8 @@ Public Class APPOINTMENT1
     Public Sub SaveAppointment(paymentType As String, paymentId As String)
         Try
             cn.Open()
+
+            ' Insert appointment
             Dim cmd As New OleDbCommand("INSERT INTO Appointments(cname,age,phone,email,type,timing,booking_date,payment_type,payment_id)VALUES(@name,@age,@phone,@email,@type,@timing,@booking_date,@payment_type,@payment_id)", cn)
 
             ' Use stored data if available (for online payment), otherwise use form data
@@ -170,6 +172,19 @@ Public Class APPOINTMENT1
             End If
 
             cmd.ExecuteNonQuery()
+
+            ' Get the created appointment ID to update payment record
+            If paymentType = "Online" And paymentId <> "" Then
+                Dim getAppointmentIdCmd As New OleDbCommand("SELECT @@IDENTITY", cn)
+                Dim appointmentId As String = getAppointmentIdCmd.ExecuteScalar().ToString()
+
+                ' Update the payment record with the appointment ID
+                Dim updatePaymentCmd As New OleDbCommand("UPDATE Payments SET appointment_id = @appointment_id WHERE ID = @payment_id", cn)
+                updatePaymentCmd.Parameters.AddWithValue("@appointment_id", appointmentId)
+                updatePaymentCmd.Parameters.AddWithValue("@payment_id", paymentId)
+                updatePaymentCmd.ExecuteNonQuery()
+            End If
+
             cn.Close()
 
             Dim customerName As String = If(AppointmentData.Count > 0, AppointmentData("name"), txtname.Text)
