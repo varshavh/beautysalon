@@ -171,9 +171,9 @@ Partial Class login
         Me.label1.Font = New System.Drawing.Font("Microsoft YaHei", 10.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.label1.Location = New System.Drawing.Point(406, 204)
         Me.label1.Name = "label1"
-        Me.label1.Size = New System.Drawing.Size(128, 26)
+        Me.label1.Size = New System.Drawing.Size(105, 26)
         Me.label1.TabIndex = 17
-        Me.label1.Text = "USERNAME:"
+        Me.label1.Text = "EMAIL ID:"
         '
         'pictureBox1
         '

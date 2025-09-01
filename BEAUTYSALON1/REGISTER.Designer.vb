@@ -78,9 +78,9 @@ Partial Class REGISTER
         Me.label1.Font = New System.Drawing.Font("Microsoft YaHei", 10.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.label1.Location = New System.Drawing.Point(343, 235)
         Me.label1.Name = "label1"
-        Me.label1.Size = New System.Drawing.Size(128, 26)
+        Me.label1.Size = New System.Drawing.Size(78, 26)
         Me.label1.TabIndex = 20
-        Me.label1.Text = "USERNAME:"
+        Me.label1.Text = "NAME:"
         '
         'Label2
         '

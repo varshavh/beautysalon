@@ -42,6 +42,8 @@ Partial Class APPOINTMENT1
         Me.label1 = New System.Windows.Forms.Label()
         Me.label4 = New System.Windows.Forms.Label()
         Me.btnback = New System.Windows.Forms.Button()
+        Me.Label11 = New System.Windows.Forms.Label()
+        Me.payment_type = New System.Windows.Forms.ComboBox()
         Me.SuspendLayout()
         '
         'label10
@@ -91,7 +93,7 @@ Partial Class APPOINTMENT1
         Me.btnadd.Name = "btnadd"
         Me.btnadd.Size = New System.Drawing.Size(155, 54)
         Me.btnadd.TabIndex = 47
-        Me.btnadd.Text = "ADD"
+        Me.btnadd.Text = "BOOK"
         Me.btnadd.UseVisualStyleBackColor = False
         '
         'cmbtime
@@ -266,12 +268,35 @@ Partial Class APPOINTMENT1
         Me.btnback.Text = "BACK"
         Me.btnback.UseVisualStyleBackColor = False
         '
+        'Label11
+        '
+        Me.Label11.AutoSize = True
+        Me.Label11.Font = New System.Drawing.Font("Microsoft YaHei", 13.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.Label11.ForeColor = System.Drawing.Color.LightSkyBlue
+        Me.Label11.Location = New System.Drawing.Point(613, 529)
+        Me.Label11.Name = "Label11"
+        Me.Label11.Size = New System.Drawing.Size(206, 31)
+        Me.Label11.TabIndex = 55
+        Me.Label11.Text = "PAYMENT TYPE"
+        '
+        'payment_type
+        '
+        Me.payment_type.Font = New System.Drawing.Font("Microsoft YaHei", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.payment_type.FormattingEnabled = True
+        Me.payment_type.Items.AddRange(New Object() {"Cash Payment", "Online Payment"})
+        Me.payment_type.Location = New System.Drawing.Point(604, 576)
+        Me.payment_type.Name = "payment_type"
+        Me.payment_type.Size = New System.Drawing.Size(220, 32)
+        Me.payment_type.TabIndex = 54
+        '
         'APPOINTMENT1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.MistyRose
         Me.ClientSize = New System.Drawing.Size(1351, 898)
+        Me.Controls.Add(Me.Label11)
+        Me.Controls.Add(Me.payment_type)
         Me.Controls.Add(Me.btnback)
         Me.Controls.Add(Me.label10)
         Me.Controls.Add(Me.label9)
@@ -319,4 +344,6 @@ Partial Class APPOINTMENT1
     Private WithEvents label1 As System.Windows.Forms.Label
     Private WithEvents label4 As System.Windows.Forms.Label
     Private WithEvents btnback As System.Windows.Forms.Button
+    Private WithEvents Label11 As System.Windows.Forms.Label
+    Private WithEvents payment_type As System.Windows.Forms.ComboBox
 End Class
