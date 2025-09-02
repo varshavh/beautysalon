@@ -44,6 +44,8 @@ Partial Class APPOINTMENT1
         Me.btnback = New System.Windows.Forms.Button()
         Me.Label11 = New System.Windows.Forms.Label()
         Me.payment_type = New System.Windows.Forms.ComboBox()
+        Me.amt = New System.Windows.Forms.Label()
+        Me.txtamt = New System.Windows.Forms.TextBox()
         Me.SuspendLayout()
         '
         'label10
@@ -75,7 +77,7 @@ Partial Class APPOINTMENT1
         Me.btnreset.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnreset.Font = New System.Drawing.Font("Microsoft YaHei", 10.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnreset.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.btnreset.Location = New System.Drawing.Point(850, 646)
+        Me.btnreset.Location = New System.Drawing.Point(851, 646)
         Me.btnreset.Name = "btnreset"
         Me.btnreset.Size = New System.Drawing.Size(155, 54)
         Me.btnreset.TabIndex = 48
@@ -89,7 +91,7 @@ Partial Class APPOINTMENT1
         Me.btnadd.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnadd.Font = New System.Drawing.Font("Microsoft YaHei", 10.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnadd.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.btnadd.Location = New System.Drawing.Point(521, 646)
+        Me.btnadd.Location = New System.Drawing.Point(506, 646)
         Me.btnadd.Name = "btnadd"
         Me.btnadd.Size = New System.Drawing.Size(155, 54)
         Me.btnadd.TabIndex = 47
@@ -101,7 +103,7 @@ Partial Class APPOINTMENT1
         Me.cmbtime.Font = New System.Drawing.Font("Microsoft YaHei", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmbtime.FormattingEnabled = True
         Me.cmbtime.Items.AddRange(New Object() {"8:00AM-10:00AM", "10:00AM-12:00AM", "12:00AM-2:00PM", "2:00PM-4:00PM", "4:00PM-6:00PM", "6:00PM-8:00PM"})
-        Me.cmbtime.Location = New System.Drawing.Point(981, 460)
+        Me.cmbtime.Location = New System.Drawing.Point(757, 579)
         Me.cmbtime.Name = "cmbtime"
         Me.cmbtime.Size = New System.Drawing.Size(220, 32)
         Me.cmbtime.TabIndex = 46
@@ -111,7 +113,7 @@ Partial Class APPOINTMENT1
         Me.label8.AutoSize = True
         Me.label8.Font = New System.Drawing.Font("Microsoft YaHei", 13.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.label8.ForeColor = System.Drawing.Color.LightSkyBlue
-        Me.label8.Location = New System.Drawing.Point(997, 413)
+        Me.label8.Location = New System.Drawing.Point(773, 532)
         Me.label8.Name = "label8"
         Me.label8.Size = New System.Drawing.Size(108, 31)
         Me.label8.TabIndex = 45
@@ -261,7 +263,7 @@ Partial Class APPOINTMENT1
         Me.btnback.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnback.Font = New System.Drawing.Font("Microsoft YaHei", 10.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.btnback.ForeColor = System.Drawing.SystemColors.ButtonHighlight
-        Me.btnback.Location = New System.Drawing.Point(707, 735)
+        Me.btnback.Location = New System.Drawing.Point(695, 736)
         Me.btnback.Name = "btnback"
         Me.btnback.Size = New System.Drawing.Size(119, 42)
         Me.btnback.TabIndex = 53
@@ -273,7 +275,7 @@ Partial Class APPOINTMENT1
         Me.Label11.AutoSize = True
         Me.Label11.Font = New System.Drawing.Font("Microsoft YaHei", 13.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label11.ForeColor = System.Drawing.Color.LightSkyBlue
-        Me.Label11.Location = New System.Drawing.Point(613, 529)
+        Me.Label11.Location = New System.Drawing.Point(347, 532)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(206, 31)
         Me.Label11.TabIndex = 55
@@ -284,10 +286,33 @@ Partial Class APPOINTMENT1
         Me.payment_type.Font = New System.Drawing.Font("Microsoft YaHei", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.payment_type.FormattingEnabled = True
         Me.payment_type.Items.AddRange(New Object() {"Cash Payment", "Online Payment"})
-        Me.payment_type.Location = New System.Drawing.Point(604, 576)
+        Me.payment_type.Location = New System.Drawing.Point(338, 579)
         Me.payment_type.Name = "payment_type"
         Me.payment_type.Size = New System.Drawing.Size(220, 32)
         Me.payment_type.TabIndex = 54
+        '
+        'amt
+        '
+        Me.amt.AutoSize = True
+        Me.amt.Font = New System.Drawing.Font("Microsoft YaHei", 13.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.amt.ForeColor = System.Drawing.Color.LightSkyBlue
+        Me.amt.Location = New System.Drawing.Point(1041, 413)
+        Me.amt.Name = "amt"
+        Me.amt.Size = New System.Drawing.Size(131, 31)
+        Me.amt.TabIndex = 57
+        Me.amt.Text = "AMOUNT"
+        '
+        'txtamt
+        '
+        Me.txtamt.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.txtamt.ForeColor = System.Drawing.SystemColors.ControlText
+        Me.txtamt.Location = New System.Drawing.Point(980, 456)
+        Me.txtamt.Multiline = True
+        Me.txtamt.Name = "txtamt"
+        Me.txtamt.RightToLeft = System.Windows.Forms.RightToLeft.No
+        Me.txtamt.Size = New System.Drawing.Size(257, 36)
+        Me.txtamt.TabIndex = 56
+        Me.txtamt.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
         'APPOINTMENT1
         '
@@ -295,6 +320,8 @@ Partial Class APPOINTMENT1
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.MistyRose
         Me.ClientSize = New System.Drawing.Size(1351, 898)
+        Me.Controls.Add(Me.amt)
+        Me.Controls.Add(Me.txtamt)
         Me.Controls.Add(Me.Label11)
         Me.Controls.Add(Me.payment_type)
         Me.Controls.Add(Me.btnback)
@@ -346,4 +373,6 @@ Partial Class APPOINTMENT1
     Private WithEvents btnback As System.Windows.Forms.Button
     Private WithEvents Label11 As System.Windows.Forms.Label
     Private WithEvents payment_type As System.Windows.Forms.ComboBox
+    Private WithEvents amt As System.Windows.Forms.Label
+    Private WithEvents txtamt As System.Windows.Forms.TextBox
 End Class

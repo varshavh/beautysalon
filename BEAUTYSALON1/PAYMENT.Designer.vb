@@ -260,9 +260,9 @@ Partial Class PAYMENT
         Me.CustName.AutoSize = True
         Me.CustName.Location = New System.Drawing.Point(1171, 32)
         Me.CustName.Name = "CustName"
-        Me.CustName.Size = New System.Drawing.Size(51, 17)
+        Me.CustName.Size = New System.Drawing.Size(73, 17)
         Me.CustName.TabIndex = 87
-        Me.CustName.Text = "Label5"
+        Me.CustName.Text = "CustName"
         '
         'Label5
         '

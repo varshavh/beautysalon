@@ -25,7 +25,11 @@ Public Class PAYMENT
         For i As Integer = currentYear To currentYear + 10
             ExpYear.Items.Add(i.ToString())
         Next
-
+        Dim userName As String = APPOINTMENT1.AppointmentData("name")
+        CustName.Text = userName
+        Amount.Enabled = False
+        Dim amt As Integer = APPOINTMENT1.AppointmentData("amount")
+        Amount.Text = amt.ToString
         ' Set focus to cardholder name
         HolderName.Focus()
     End Sub
@@ -281,5 +285,9 @@ Public Class PAYMENT
     End Sub
 
     Private Sub ExpYear_TextChanged(sender As System.Object, e As System.EventArgs) Handles ExpYear.TextChanged
+    End Sub
+
+    Private Sub CustName_Click(sender As System.Object, e As System.EventArgs) Handles CustName.Click
+
     End Sub
 End Class

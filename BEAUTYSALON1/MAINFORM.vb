@@ -27,29 +27,69 @@
         End If
     End Sub
 
-    ' New method to configure menu visibility based on user role
+    ' Updated method to configure menu visibility based on user role
     Private Sub ConfigureMenuForRole()
         If CurrentUserRole.ToLower() = "admin" Then
-            ' Admin can see everything except appointment booking
-            lbappointment.Visible = False  ' Hide appointment booking for admin
-            AppointPic.Visible = False
+            ' Admin can see everything
+            lbappointment.Visible = True   ' Admin can also book appointments for customers
+            lbappointment.Text = "Book Appointment"
+
+            ' Bookings - Admin sees all bookings
+            If Me.Controls.ContainsKey("Bookings") Then
+                lbbookings.Visible = True
+                lbbookings.Text = "All Bookings"
+            End If
+            If Me.Controls.ContainsKey("lbbookings") Then
+                lbbookings.Visible = True
+                lbbookings.Text = "All Bookings"
+            End If
+
+            ' Customers - Only visible to Admin
             lbcustomer.Visible = True
-            lbcustomer.Text = "Customers"  ' Keep original text for admin
+            lbcustomer.Text = "Customers Management"
+
             lbpayment.Visible = True
             lbfeedback.Visible = True
             lblogout.Visible = True
+
         ElseIf CurrentUserRole.ToLower() = "user" Then
             ' Regular users can book appointments and see their bookings
-            lbappointment.Visible = True   ' Show appointment booking for users
-            lbcustomer.Visible = True
-            lbcustomer.Text = "My Bookings"  ' Change text for users
+            lbappointment.Visible = True
+            lbappointment.Text = "Book Appointment"
+
+            ' Bookings - User sees only their bookings
+            If Me.Controls.ContainsKey("Bookings") Then
+                lbbookings.Visible = True
+                lbbookings.Text = "My Bookings"
+            End If
+            If Me.Controls.ContainsKey("lbbookings") Then
+                lbbookings.Visible = True
+                lbbookings.Text = "My Bookings"
+            End If
+
+            ' Customers - Hidden for regular users
+            'lbcustomer.Visible = False
+            'PictureBox4.Visible = False
+            customerlayout.Visible = False
             lbpayment.Visible = True
             lbfeedback.Visible = True
             lblogout.Visible = True
+
         Else
-            ' Guest or unknown role - hide most options
+            ' Guest or unknown role - limited access
             lbappointment.Visible = False
+
+            ' Hide bookings for guests
+            If Me.Controls.ContainsKey("Bookings") Then
+                lbbookings.Visible = False
+            End If
+            If Me.Controls.ContainsKey("lbbookings") Then
+                lbbookings.Visible = False
+            End If
+
             lbcustomer.Visible = False
+            PictureBox4.Visible = False
+            customerlayout.Visible = False
             lbpayment.Visible = False
             lbfeedback.Visible = True  ' Allow feedback for guests
             lblogout.Visible = True
@@ -81,32 +121,50 @@
     End Sub
 
     Private Sub lbappointment_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lbappointment.Click
-        ' Only allow users to book appointments, not admins
-        If CurrentUserRole.ToLower() = "user" Then
+        ' Both admin and users can book appointments
+        If CurrentUserRole.ToLower() = "admin" Or CurrentUserRole.ToLower() = "user" Then
             Dim form As New APPOINTMENT1()
             form.Show()
             Me.Hide()
         Else
-            MsgBox("Appointment booking is only available for customers.", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            MsgBox("Please login to book appointments.", MessageBoxButtons.OK, MessageBoxIcon.Information)
         End If
     End Sub
 
-    Private Sub lbcustomer_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lbcustomer.Click
+    ' Handle the Bookings button click (this goes to MYBOOKINGS form)
+    Private Sub Bookings_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lbbookings.Click
         ' Check user role and redirect accordingly
+        If CurrentUserRole.ToLower() = "admin" Then
+            ' Admin sees all bookings
+            Dim form As New ADMINBOOKINGS()
+            form.Show()
+            Me.Hide()
+        ElseIf CurrentUserRole.ToLower() = "user" Then
+            ' User sees their own bookings
+            Dim form As New MYBOOKINGS()
+            form.Show()
+            Me.Hide()
+        Else
+            MsgBox("Access denied. Please login to view bookings.", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        End If
+    End Sub
+
+    ' Alternative handler if you have a different bookings button name
+    Private Sub lbbookings_Click(ByVal sender As System.Object, ByVal e As System.EventArgs)
+        ' Same functionality as Bookings_Click
+        Bookings_Click(sender, e)
+    End Sub
+
+    ' Handle the Customers button click (this goes to CUSTOMERS form - Admin only)
+    Private Sub lbcustomer_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lbcustomer.Click
+        ' Only admin can access customer management
         If CurrentUserRole.ToLower() = "admin" Then
             ' Admin sees customer management
             Dim form As New CUSTOMERS()
             form.Show()
             Me.Hide()
-        ElseIf CurrentUserRole.ToLower() = "user" Then
-            ' User sees their own bookings - you'll need to create this form
-            ' or modify existing CUSTOMERS form to show only user's bookings
-            Dim form As New CUSTOMERS()
-            ' You can pass the current user info to filter bookings
-            form.Show()
-            Me.Hide()
         Else
-            MsgBox("Access denied. Please login to view this section.", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+            MsgBox("Access denied. Customer management is only available for administrators.", MessageBoxButtons.OK, MessageBoxIcon.Warning)
         End If
     End Sub
 
@@ -145,4 +203,31 @@
     Private Sub PictureBox1_Click(sender As System.Object, e As System.EventArgs) Handles PictureBox1.Click
     End Sub
 
+    Private Sub Panel1_Paint(sender As System.Object, e As System.Windows.Forms.PaintEventArgs) Handles Panel1.Paint
+    End Sub
+
+    Private Sub PictureBox3_Click(sender As System.Object, e As System.EventArgs) Handles PictureBox3.Click
+    End Sub
+
+    Private Sub Label2_Click(sender As System.Object, e As System.EventArgs) Handles lbbookings.Click
+        ' This handles the click on the Bookings label
+        Bookings_Click(sender, e)
+    End Sub
+
+    Private Sub PictureBox4_Click(sender As System.Object, e As System.EventArgs) Handles PictureBox4.Click
+
+    End Sub
+
+
+    Private Sub PictureBox5_Click(sender As System.Object, e As System.EventArgs) Handles PictureBox5.Click
+
+    End Sub
+
+
+    Private Sub Label1_Click(sender As System.Object, e As System.EventArgs) Handles Label1.Click
+
+    End Sub
+    Private Sub PictureBox7_Click(sender As System.Object, e As System.EventArgs) Handles PictureBox7.Click
+
+    End Sub
 End Class

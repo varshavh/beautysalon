@@ -7,15 +7,80 @@ Public Class APPOINTMENT1
     ' Public variables to pass appointment data to payment form
     Public Shared AppointmentData As New Dictionary(Of String, String)
 
+    ' Dictionary to store service names and their corresponding amounts
+    Private ServiceAmounts As New Dictionary(Of String, Decimal)
+
     Private Sub APPOINTMENT1_Load(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles MyBase.Load
         ' Set form properties
         Me.StartPosition = FormStartPosition.CenterScreen
+
+        ' Load services from database first
+        LoadServicesFromDatabase()
 
         ' Prefill user details from MAINFORM
         PrefillUserDetails()
 
         ' Initialize payment type dropdown
         InitializePaymentTypes()
+
+        ' Disable amount field so user cannot change it
+        txtamt.ReadOnly = True
+        txtamt.Enabled = False
+    End Sub
+
+    Private Sub LoadServicesFromDatabase()
+        Try
+            cn.Open()
+
+            ' Clear existing items and dictionary
+            cmbtype.Items.Clear()
+            ServiceAmounts.Clear()
+
+            ' Query to get service names and amounts from services table
+            Dim cmd As New OleDbCommand("SELECT service_name, amount FROM services ORDER BY service_name", cn)
+            Dim reader As OleDbDataReader = cmd.ExecuteReader()
+
+            While reader.Read()
+                Dim serviceName As String = reader("service_name").ToString()
+                Dim amount As Decimal = Convert.ToDecimal(reader("amount"))
+
+                ' Add to combo box
+                cmbtype.Items.Add(serviceName)
+
+                ' Store in dictionary for amount lookup
+                ServiceAmounts.Add(serviceName, amount)
+            End While
+
+            reader.Close()
+            cn.Close()
+
+            ' Set default selection
+            If cmbtype.Items.Count > 0 Then
+                cmbtype.SelectedIndex = -1 ' No default selection
+            End If
+
+        Catch ex As Exception
+            MsgBox("Error loading services: " & ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Error)
+        Finally
+            If cn.State = ConnectionState.Open Then
+                cn.Close()
+            End If
+        End Try
+    End Sub
+
+    Private Sub cmbtype_SelectedIndexChanged(sender As System.Object, e As System.EventArgs) Handles cmbtype.SelectedIndexChanged
+        ' Auto-fill amount when service type is selected
+        If cmbtype.SelectedItem IsNot Nothing Then
+            Dim selectedService As String = cmbtype.SelectedItem.ToString()
+
+            If ServiceAmounts.ContainsKey(selectedService) Then
+                ' Set the amount in the text field
+                txtamt.Text = ServiceAmounts(selectedService).ToString("F2") ' Format to 2 decimal places
+            End If
+        Else
+            ' Clear amount if no service selected
+            txtamt.Clear()
+        End If
     End Sub
 
     Private Sub InitializePaymentTypes()
@@ -135,14 +200,15 @@ Public Class APPOINTMENT1
         AppointmentData.Add("email", txtemail.Text)
         AppointmentData.Add("type", cmbtype.Text)
         AppointmentData.Add("timing", cmbtime.Text)
+        AppointmentData.Add("amount", txtamt.Text) ' Also store the amount
     End Sub
 
     Public Sub SaveAppointment(paymentType As String, paymentId As String)
         Try
             cn.Open()
 
-            ' Insert appointment
-            Dim cmd As New OleDbCommand("INSERT INTO Appointments(cname,age,phone,email,type,timing,booking_date,payment_type,payment_id)VALUES(@name,@age,@phone,@email,@type,@timing,@booking_date,@payment_type,@payment_id)", cn)
+            ' Insert appointment - now including amount
+            Dim cmd As New OleDbCommand("INSERT INTO Appointments(cname,age,phone,email,type,timing,booking_date,payment_type,payment_id,amount)VALUES(@name,@age,@phone,@email,@type,@timing,@booking_date,@payment_type,@payment_id,@amount)", cn)
 
             ' Use stored data if available (for online payment), otherwise use form data
             If AppointmentData.Count > 0 Then
@@ -152,6 +218,7 @@ Public Class APPOINTMENT1
                 cmd.Parameters.AddWithValue("@email", AppointmentData("email"))
                 cmd.Parameters.AddWithValue("@type", AppointmentData("type"))
                 cmd.Parameters.AddWithValue("@timing", AppointmentData("timing"))
+                cmd.Parameters.AddWithValue("@amount", Convert.ToDecimal(AppointmentData("amount")))
             Else
                 cmd.Parameters.AddWithValue("@name", txtname.Text)
                 cmd.Parameters.AddWithValue("@age", txtage.Text)
@@ -159,6 +226,7 @@ Public Class APPOINTMENT1
                 cmd.Parameters.AddWithValue("@email", txtemail.Text)
                 cmd.Parameters.AddWithValue("@type", cmbtype.Text)
                 cmd.Parameters.AddWithValue("@timing", cmbtime.Text)
+                cmd.Parameters.AddWithValue("@amount", Convert.ToDecimal(txtamt.Text))
             End If
 
             cmd.Parameters.AddWithValue("@booking_date", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
@@ -217,6 +285,7 @@ Public Class APPOINTMENT1
         cmbtype.SelectedIndex = -1
         cmbtime.SelectedIndex = -1
         payment_type.SelectedIndex = -1
+        txtamt.Clear() ' Also clear the amount
 
         ' Set focus back to appointment type
         If cmbtype.Items.Count > 0 Then
@@ -247,6 +316,7 @@ Public Class APPOINTMENT1
         cmbtype.SelectedIndex = -1
         cmbtime.SelectedIndex = -1
         payment_type.SelectedIndex = -1
+        txtamt.Clear()
     End Sub
 
     Private Sub btnback_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnback.Click
@@ -276,5 +346,12 @@ Public Class APPOINTMENT1
     End Sub
 
     Private Sub Label11_Click(sender As System.Object, e As System.EventArgs) Handles Label11.Click
+    End Sub
+
+    Private Sub TextBox1_TextChanged(sender As System.Object, e As System.EventArgs) Handles txtamt.TextChanged
+        ' This event handler is now disabled since txtamt is read-only
+    End Sub
+
+    Private Sub Label12_Click(sender As System.Object, e As System.EventArgs) Handles amt.Click
     End Sub
 End Class

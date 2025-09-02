@@ -78,6 +78,24 @@
     <Compile Include="APPOINTMENT1.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="ADMINBOOKING.Designer.vb">
+      <DependentUpon>ADMINBOOKING.vb</DependentUpon>
+    </Compile>
+    <Compile Include="ADMINBOOKING.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CustBooking.Designer.vb">
+      <DependentUpon>CustBooking.vb</DependentUpon>
+    </Compile>
+    <Compile Include="CustBooking.vb">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="MYBOOKINGS.Designer.vb">
+      <DependentUpon>MYBOOKINGS.vb</DependentUpon>
+    </Compile>
+    <Compile Include="MYBOOKINGS.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="FEEDBACK.Designer.vb">
       <DependentUpon>FEEDBACK.vb</DependentUpon>
     </Compile>
@@ -134,6 +152,12 @@
     <EmbeddedResource Include="APPOINTMENT1.resx">
       <DependentUpon>APPOINTMENT1.vb</DependentUpon>
     </EmbeddedResource>
+    <EmbeddedResource Include="ADMINBOOKING.resx">
+      <DependentUpon>ADMINBOOKING.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="MYBOOKINGS.resx">
+      <DependentUpon>MYBOOKINGS.vb</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="FEEDBACK.resx">
       <DependentUpon>FEEDBACK.vb</DependentUpon>
     </EmbeddedResource>
@@ -160,6 +184,7 @@
     </EmbeddedResource>
   </ItemGroup>
   <ItemGroup>
+    <None Include="ClassDiagram1.cd" />
     <None Include="My Project\Application.myapp">
       <Generator>MyApplicationCodeGenerator</Generator>
       <LastGenOutput>Application.Designer.vb</LastGenOutput>
