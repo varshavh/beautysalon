@@ -9,7 +9,7 @@
     Private Sub MAINFORM_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
         ' Display current user information on the form
         DisplayUserInfo()
-        ' Configure menu based on user role
+        ' Configure menu based on user rolea
         ConfigureMenuForRole()
         ' Set form properties
         Me.StartPosition = FormStartPosition.CenterScreen
@@ -31,9 +31,9 @@
     Private Sub ConfigureMenuForRole()
         If CurrentUserRole.ToLower() = "admin" Then
             ' Admin can see everything
-            lbappointment.Visible = True   ' Admin can also book appointments for customers
+            lbappointment.Visible = False   ' Admin can also book appointments for customers
             lbappointment.Text = "Book Appointment"
-
+            booklayout.Visible = False
             ' Bookings - Admin sees all bookings
             If Me.Controls.ContainsKey("Bookings") Then
                 lbbookings.Visible = True
@@ -91,6 +91,7 @@
             PictureBox4.Visible = False
             customerlayout.Visible = False
             lbpayment.Visible = False
+            paymentlayout.Visible = False
             lbfeedback.Visible = True  ' Allow feedback for guests
             lblogout.Visible = True
         End If
@@ -120,10 +121,12 @@
         ConfigureMenuForRole()
     End Sub
 
+    ' UPDATED: Pass reference to calling form
     Private Sub lbappointment_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lbappointment.Click
         ' Both admin and users can book appointments
         If CurrentUserRole.ToLower() = "admin" Or CurrentUserRole.ToLower() = "user" Then
             Dim form As New APPOINTMENT1()
+            form.CallingForm = Me  ' Pass reference to this form
             form.Show()
             Me.Hide()
         Else
@@ -131,17 +134,19 @@
         End If
     End Sub
 
-    ' Handle the Bookings button click (this goes to MYBOOKINGS form)
+    ' UPDATED: Handle the Bookings button click (this goes to MYBOOKINGS form)
     Private Sub Bookings_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lbbookings.Click
         ' Check user role and redirect accordingly
         If CurrentUserRole.ToLower() = "admin" Then
             ' Admin sees all bookings
             Dim form As New ADMINBOOKINGS()
+            form.CallingForm = Me  ' Pass reference to this form
             form.Show()
             Me.Hide()
         ElseIf CurrentUserRole.ToLower() = "user" Then
             ' User sees their own bookings
             Dim form As New MYBOOKINGS()
+            form.CallingForm = Me  ' Pass reference to this form
             form.Show()
             Me.Hide()
         Else
@@ -155,12 +160,13 @@
         Bookings_Click(sender, e)
     End Sub
 
-    ' Handle the Customers button click (this goes to CUSTOMERS form - Admin only)
+    ' UPDATED: Handle the Customers button click (this goes to CUSTOMERS form - Admin only)
     Private Sub lbcustomer_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lbcustomer.Click
         ' Only admin can access customer management
         If CurrentUserRole.ToLower() = "admin" Then
             ' Admin sees customer management
             Dim form As New CUSTOMERS()
+            form.CallingForm = Me  ' Pass reference to this form
             form.Show()
             Me.Hide()
         Else
@@ -168,10 +174,12 @@
         End If
     End Sub
 
+    ' UPDATED: Payment form
     Private Sub lbpayment_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lbpayment.Click
         ' Check if user has permission
         If CurrentUserRole.ToLower() = "admin" Or CurrentUserRole.ToLower() = "user" Then
-            Dim form As New PAYMENT()
+            Dim form As New PAYMENTHISTORY()
+            form.CallingForm = Me  ' Pass reference to this form
             form.Show()
             Me.Hide()
         Else
@@ -179,8 +187,10 @@
         End If
     End Sub
 
+    ' UPDATED: Feedback form
     Private Sub lbfeedback_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles lbfeedback.Click
         Dim form As New FEEDBACK()
+        form.CallingForm = Me  ' Pass reference to this form
         form.Show()
         Me.Hide()
     End Sub
@@ -218,15 +228,14 @@
 
     End Sub
 
-
     Private Sub PictureBox5_Click(sender As System.Object, e As System.EventArgs) Handles PictureBox5.Click
 
     End Sub
 
-
     Private Sub Label1_Click(sender As System.Object, e As System.EventArgs) Handles Label1.Click
 
     End Sub
+
     Private Sub PictureBox7_Click(sender As System.Object, e As System.EventArgs) Handles PictureBox7.Click
 
     End Sub

@@ -84,6 +84,12 @@
     <Compile Include="ADMINBOOKING.vb">
       <SubType>Form</SubType>
     </Compile>
+    <Compile Include="PAYMENTHISTORY.Designer.vb">
+      <DependentUpon>PAYMENTHISTORY.vb</DependentUpon>
+    </Compile>
+    <Compile Include="PAYMENTHISTORY.vb">
+      <SubType>Form</SubType>
+    </Compile>
     <Compile Include="CustBooking.Designer.vb">
       <DependentUpon>CustBooking.vb</DependentUpon>
     </Compile>
@@ -154,6 +160,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="ADMINBOOKING.resx">
       <DependentUpon>ADMINBOOKING.vb</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="PAYMENTHISTORY.resx">
+      <DependentUpon>PAYMENTHISTORY.vb</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="MYBOOKINGS.resx">
       <DependentUpon>MYBOOKINGS.vb</DependentUpon>

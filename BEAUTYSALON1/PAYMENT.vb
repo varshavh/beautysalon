@@ -3,7 +3,7 @@ Imports System.Text.RegularExpressions
 
 Public Class PAYMENT
     Dim cn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\varsha v hegde\OneDrive\ドキュメント\vspsln.accdb")
-
+    Public Property CallingForm
     Private Sub PAYMENT_Load(sender As System.Object, e As System.EventArgs) Handles MyBase.Load
         ' Set form properties
         Me.StartPosition = FormStartPosition.CenterScreen
@@ -53,7 +53,7 @@ Public Class PAYMENT
                 APPOINTMENT1.AppointmentData.Clear()
 
                 ' Go back to main form
-                MAINFORM.Show()
+                CallingForm.back_main_form()
                 Me.Close()
             Else
                 MsgBox("Payment failed. Please try again.", MessageBoxButtons.OK, MessageBoxIcon.Error)

@@ -1,6 +1,9 @@
 ﻿Imports System.Data.OleDb
 
 Public Class CUSTOMERS
+    ' ADD THIS: Property to hold reference to calling form
+    Public Property CallingForm As Form
+
     ' Database connection string - same as in REGISTER form
     Dim con As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\varsha v hegde\OneDrive\ドキュメント\vspsln.accdb")
     Dim cmd As OleDbCommand
@@ -129,7 +132,7 @@ Public Class CUSTOMERS
         End Try
     End Sub
 
-    ' NEW: Handle row click to populate form fields
+    ' Handle row click to populate form fields
     Private Sub dataGridView1_CellClick(sender As System.Object, e As System.Windows.Forms.DataGridViewCellEventArgs) Handles dataGridView1.CellClick
         Try
             If e.RowIndex >= 0 Then
@@ -153,7 +156,7 @@ Public Class CUSTOMERS
         End Try
     End Sub
 
-    ' NEW: Set form mode (enable/disable buttons and fields)
+    ' Set form mode (enable/disable buttons and fields)
     Private Sub SetFormMode(hasSelection As Boolean)
         If hasSelection Then
             ' Enable text fields for editing
@@ -180,7 +183,7 @@ Public Class CUSTOMERS
         End If
     End Sub
 
-    ' NEW: Clear all form fields
+    ' Clear all form fields
     Private Sub ClearFormFields()
         txtname.Text = ""
         txtemail.Text = ""
@@ -190,7 +193,7 @@ Public Class CUSTOMERS
         isEditMode = False
     End Sub
 
-    ' NEW: Save/Update customer data
+    ' Save/Update customer data
     Private Sub btnsave_Click(sender As System.Object, e As System.EventArgs) Handles btnsave.Click
         Try
             ' Validate input fields
@@ -246,7 +249,7 @@ Public Class CUSTOMERS
         End Try
     End Sub
 
-    ' NEW: Update customer in database
+    ' Update customer in database
     Private Sub UpdateCustomer()
         Try
             con.Open()
@@ -302,7 +305,7 @@ Public Class CUSTOMERS
         End Try
     End Sub
 
-    ' NEW: Delete customer
+    ' Delete customer
     Private Sub btndelete_Click(sender As System.Object, e As System.EventArgs) Handles btndelete.Click
         Try
             If String.IsNullOrEmpty(selectedCustomerEmail) Then
@@ -348,14 +351,14 @@ Public Class CUSTOMERS
         End Try
     End Sub
 
-    ' NEW: Cancel/Clear button functionality
+    ' Cancel/Clear button functionality
     Private Sub btnCancel_Click(sender As System.Object, e As System.EventArgs)
         ClearFormFields()
         SetFormMode(False)
         dataGridView1.ClearSelection()
     End Sub
 
-    ' NEW: Email validation function
+    ' Email validation function
     Private Function IsValidEmail(email As String) As Boolean
         Try
             Dim addr As New System.Net.Mail.MailAddress(email)
@@ -444,15 +447,16 @@ Public Class CUSTOMERS
         End Try
     End Sub
 
-    ' Export button handler (if you add one)
-    'Private Sub btnExport_Click(sender As System.Object, e As System.EventArgs) Handles btnExport.Click
-    '   ExportToCSV()
-    'End Sub
-
-    ' Back button to return to main form
+    ' UPDATED: Back button to return to calling form
     Private Sub Button3_Click(sender As System.Object, e As System.EventArgs) Handles Button3.Click
         Me.Hide()
-        MAINFORM.Show()
+        If CallingForm IsNot Nothing Then
+            CallingForm.Show()
+        Else
+            ' Fallback - create new MAINFORM if no calling form reference
+            Dim mainForm As New MAINFORM()
+            mainForm.Show()
+        End If
     End Sub
 
     ' DataGridView cell content click handler
@@ -505,11 +509,4 @@ Public Class CUSTOMERS
         ' Optional: Add real-time email validation
     End Sub
 
-    Private Sub txtphone_TextChanged(sender As System.Object, e As System.EventArgs) Handles txtphone.TextChanged
-        ' Optional: Add phone number validation
-    End Sub
-
-    Private Sub txtage_TextChanged(sender As System.Object, e As System.EventArgs) Handles txtage.TextChanged
-        ' Optional: Add age validation
-    End Sub
 End Class

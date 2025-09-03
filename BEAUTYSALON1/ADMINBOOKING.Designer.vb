@@ -45,6 +45,8 @@ Partial Class ADMINBOOKINGS
         Me.label8 = New System.Windows.Forms.Label()
         Me.btndelete = New System.Windows.Forms.Button()
         Me.btnsave = New System.Windows.Forms.Button()
+        Me.booking_Date = New System.Windows.Forms.DateTimePicker()
+        Me.bookingDate = New System.Windows.Forms.Label()
         CType(Me.dataGridView1, System.ComponentModel.ISupportInitialize).BeginInit()
         CType(Me.bookinglist, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
@@ -265,7 +267,7 @@ Partial Class ADMINBOOKINGS
         Me.cmbtime.Font = New System.Drawing.Font("Microsoft YaHei", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmbtime.FormattingEnabled = True
         Me.cmbtime.Items.AddRange(New Object() {"8:00AM-10:00AM", "10:00AM-12:00AM", "12:00AM-2:00PM", "2:00PM-4:00PM", "4:00PM-6:00PM", "6:00PM-8:00PM"})
-        Me.cmbtime.Location = New System.Drawing.Point(296, 601)
+        Me.cmbtime.Location = New System.Drawing.Point(296, 681)
         Me.cmbtime.Name = "cmbtime"
         Me.cmbtime.Size = New System.Drawing.Size(220, 32)
         Me.cmbtime.TabIndex = 76
@@ -275,7 +277,7 @@ Partial Class ADMINBOOKINGS
         Me.label8.AutoSize = True
         Me.label8.Font = New System.Drawing.Font("Microsoft YaHei", 13.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.label8.ForeColor = System.Drawing.Color.LightSkyBlue
-        Me.label8.Location = New System.Drawing.Point(96, 601)
+        Me.label8.Location = New System.Drawing.Point(116, 677)
         Me.label8.Name = "label8"
         Me.label8.Size = New System.Drawing.Size(108, 31)
         Me.label8.TabIndex = 75
@@ -287,7 +289,7 @@ Partial Class ADMINBOOKINGS
         Me.btndelete.FlatAppearance.BorderSize = 0
         Me.btndelete.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btndelete.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btndelete.Location = New System.Drawing.Point(324, 694)
+        Me.btndelete.Location = New System.Drawing.Point(316, 763)
         Me.btndelete.Name = "btndelete"
         Me.btndelete.Size = New System.Drawing.Size(141, 40)
         Me.btndelete.TabIndex = 78
@@ -300,19 +302,39 @@ Partial Class ADMINBOOKINGS
         Me.btnsave.FlatAppearance.BorderSize = 0
         Me.btnsave.FlatStyle = System.Windows.Forms.FlatStyle.Flat
         Me.btnsave.Font = New System.Drawing.Font("Microsoft Sans Serif", 12.0!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.btnsave.Location = New System.Drawing.Point(131, 694)
+        Me.btnsave.Location = New System.Drawing.Point(123, 763)
         Me.btnsave.Name = "btnsave"
         Me.btnsave.Size = New System.Drawing.Size(158, 40)
         Me.btnsave.TabIndex = 77
         Me.btnsave.Text = "SAVE"
         Me.btnsave.UseVisualStyleBackColor = False
         '
-        'MYBOOKINGS
+        'booking_Date
+        '
+        Me.booking_Date.Location = New System.Drawing.Point(296, 607)
+        Me.booking_Date.Name = "booking_Date"
+        Me.booking_Date.Size = New System.Drawing.Size(200, 22)
+        Me.booking_Date.TabIndex = 80
+        '
+        'bookingDate
+        '
+        Me.bookingDate.AutoSize = True
+        Me.bookingDate.Font = New System.Drawing.Font("Microsoft YaHei", 13.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.bookingDate.ForeColor = System.Drawing.Color.LightSkyBlue
+        Me.bookingDate.Location = New System.Drawing.Point(67, 607)
+        Me.bookingDate.Name = "bookingDate"
+        Me.bookingDate.Size = New System.Drawing.Size(206, 31)
+        Me.bookingDate.TabIndex = 79
+        Me.bookingDate.Text = "BOOKING DATE"
+        '
+        'ADMINBOOKINGS
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.SystemColors.ControlLightLight
         Me.ClientSize = New System.Drawing.Size(1391, 911)
+        Me.Controls.Add(Me.booking_Date)
+        Me.Controls.Add(Me.bookingDate)
         Me.Controls.Add(Me.btndelete)
         Me.Controls.Add(Me.btnsave)
         Me.Controls.Add(Me.cmbtime)
@@ -335,7 +357,7 @@ Partial Class ADMINBOOKINGS
         Me.Controls.Add(Me.label1)
         Me.Controls.Add(Me.label4)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
-        Me.Name = "MYBOOKINGS"
+        Me.Name = "ADMINBOOKINGS"
         Me.Text = "VIEWMEMBER"
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.dataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
@@ -366,4 +388,6 @@ Partial Class ADMINBOOKINGS
     Private WithEvents label8 As System.Windows.Forms.Label
     Friend WithEvents btndelete As System.Windows.Forms.Button
     Friend WithEvents btnsave As System.Windows.Forms.Button
+    Friend WithEvents booking_Date As System.Windows.Forms.DateTimePicker
+    Private WithEvents bookingDate As System.Windows.Forms.Label
 End Class

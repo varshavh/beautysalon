@@ -117,7 +117,7 @@ Partial Class PAYMENT
         Me.label7.AutoSize = True
         Me.label7.Font = New System.Drawing.Font("Microsoft YaHei", 13.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.label7.ForeColor = System.Drawing.Color.LightSkyBlue
-        Me.label7.Location = New System.Drawing.Point(484, 365)
+        Me.label7.Location = New System.Drawing.Point(444, 369)
         Me.label7.Name = "label7"
         Me.label7.Size = New System.Drawing.Size(209, 31)
         Me.label7.TabIndex = 66
@@ -128,7 +128,7 @@ Partial Class PAYMENT
         Me.label2.AutoSize = True
         Me.label2.Font = New System.Drawing.Font("Microsoft YaHei", 13.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.label2.ForeColor = System.Drawing.Color.LightSkyBlue
-        Me.label2.Location = New System.Drawing.Point(426, 247)
+        Me.label2.Location = New System.Drawing.Point(375, 247)
         Me.label2.Name = "label2"
         Me.label2.Size = New System.Drawing.Size(278, 31)
         Me.label2.TabIndex = 58
@@ -138,7 +138,7 @@ Partial Class PAYMENT
         '
         Me.HolderName.Font = New System.Drawing.Font("Microsoft Sans Serif", 13.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.HolderName.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.HolderName.Location = New System.Drawing.Point(717, 240)
+        Me.HolderName.Location = New System.Drawing.Point(785, 240)
         Me.HolderName.Multiline = True
         Me.HolderName.Name = "HolderName"
         Me.HolderName.RightToLeft = System.Windows.Forms.RightToLeft.No
@@ -176,7 +176,7 @@ Partial Class PAYMENT
         Me.Label3.AutoSize = True
         Me.Label3.Font = New System.Drawing.Font("Microsoft YaHei", 13.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label3.ForeColor = System.Drawing.Color.LightSkyBlue
-        Me.Label3.Location = New System.Drawing.Point(488, 182)
+        Me.Label3.Location = New System.Drawing.Point(439, 182)
         Me.Label3.Name = "Label3"
         Me.Label3.Size = New System.Drawing.Size(211, 31)
         Me.Label3.TabIndex = 76
@@ -185,9 +185,10 @@ Partial Class PAYMENT
         'DateTimePicker1
         '
         Me.DateTimePicker1.CalendarFont = New System.Drawing.Font("Microsoft Sans Serif", 13.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
-        Me.DateTimePicker1.Location = New System.Drawing.Point(717, 182)
+        Me.DateTimePicker1.Font = New System.Drawing.Font("Microsoft Sans Serif", 13.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.DateTimePicker1.Location = New System.Drawing.Point(785, 182)
         Me.DateTimePicker1.Name = "DateTimePicker1"
-        Me.DateTimePicker1.Size = New System.Drawing.Size(249, 22)
+        Me.DateTimePicker1.Size = New System.Drawing.Size(249, 34)
         Me.DateTimePicker1.TabIndex = 77
         '
         'Label6
@@ -205,7 +206,7 @@ Partial Class PAYMENT
         Me.Label8.AutoSize = True
         Me.Label8.Font = New System.Drawing.Font("Microsoft YaHei", 13.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label8.ForeColor = System.Drawing.Color.LightSkyBlue
-        Me.Label8.Location = New System.Drawing.Point(497, 301)
+        Me.Label8.Location = New System.Drawing.Point(448, 300)
         Me.Label8.Name = "Label8"
         Me.Label8.Size = New System.Drawing.Size(202, 31)
         Me.Label8.TabIndex = 81
@@ -215,7 +216,7 @@ Partial Class PAYMENT
         '
         Me.CardNum.Font = New System.Drawing.Font("Microsoft Sans Serif", 13.8!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.CardNum.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.CardNum.Location = New System.Drawing.Point(717, 300)
+        Me.CardNum.Location = New System.Drawing.Point(785, 300)
         Me.CardNum.Multiline = True
         Me.CardNum.Name = "CardNum"
         Me.CardNum.RightToLeft = System.Windows.Forms.RightToLeft.No
@@ -227,7 +228,7 @@ Partial Class PAYMENT
         '
         Me.ExpMonth.FormattingEnabled = True
         Me.ExpMonth.Items.AddRange(New Object() {"Jan", "Feb", "Mar", "Apr", "May", "Jun", "Jul", "Aug", "Sep", "Oct", "Nov", "Dec"})
-        Me.ExpMonth.Location = New System.Drawing.Point(717, 369)
+        Me.ExpMonth.Location = New System.Drawing.Point(785, 369)
         Me.ExpMonth.Name = "ExpMonth"
         Me.ExpMonth.Size = New System.Drawing.Size(257, 24)
         Me.ExpMonth.TabIndex = 84
@@ -237,7 +238,7 @@ Partial Class PAYMENT
         Me.Label11.AutoSize = True
         Me.Label11.Font = New System.Drawing.Font("Microsoft YaHei", 13.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label11.ForeColor = System.Drawing.Color.LightSkyBlue
-        Me.Label11.Location = New System.Drawing.Point(497, 426)
+        Me.Label11.Location = New System.Drawing.Point(476, 426)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(174, 31)
         Me.Label11.TabIndex = 85
@@ -269,7 +270,7 @@ Partial Class PAYMENT
         Me.Label5.AutoSize = True
         Me.Label5.Font = New System.Drawing.Font("Microsoft YaHei", 13.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label5.ForeColor = System.Drawing.Color.LightSkyBlue
-        Me.Label5.Location = New System.Drawing.Point(539, 494)
+        Me.Label5.Location = New System.Drawing.Point(536, 494)
         Me.Label5.Name = "Label5"
         Me.Label5.Size = New System.Drawing.Size(114, 31)
         Me.Label5.TabIndex = 89
@@ -279,7 +280,7 @@ Partial Class PAYMENT
         '
         Me.Amount.Font = New System.Drawing.Font("Microsoft Sans Serif", 10.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Amount.ForeColor = System.Drawing.SystemColors.ControlText
-        Me.Amount.Location = New System.Drawing.Point(717, 485)
+        Me.Amount.Location = New System.Drawing.Point(785, 485)
         Me.Amount.Multiline = True
         Me.Amount.Name = "Amount"
         Me.Amount.RightToLeft = System.Windows.Forms.RightToLeft.No
@@ -291,7 +292,7 @@ Partial Class PAYMENT
         '
         Me.ExpYear.FormattingEnabled = True
         Me.ExpYear.Items.AddRange(New Object() {"2025", "2026", "2027", "2028", "2029", "2030", "2031", "2032", "2033", "2034", "2035"})
-        Me.ExpYear.Location = New System.Drawing.Point(717, 433)
+        Me.ExpYear.Location = New System.Drawing.Point(785, 433)
         Me.ExpYear.Name = "ExpYear"
         Me.ExpYear.Size = New System.Drawing.Size(257, 24)
         Me.ExpYear.TabIndex = 90

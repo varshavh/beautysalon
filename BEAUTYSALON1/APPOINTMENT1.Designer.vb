@@ -46,6 +46,8 @@ Partial Class APPOINTMENT1
         Me.payment_type = New System.Windows.Forms.ComboBox()
         Me.amt = New System.Windows.Forms.Label()
         Me.txtamt = New System.Windows.Forms.TextBox()
+        Me.bookingDate = New System.Windows.Forms.Label()
+        Me.DateTimePicker1 = New System.Windows.Forms.DateTimePicker()
         Me.SuspendLayout()
         '
         'label10
@@ -103,7 +105,7 @@ Partial Class APPOINTMENT1
         Me.cmbtime.Font = New System.Drawing.Font("Microsoft YaHei", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.cmbtime.FormattingEnabled = True
         Me.cmbtime.Items.AddRange(New Object() {"8:00AM-10:00AM", "10:00AM-12:00AM", "12:00AM-2:00PM", "2:00PM-4:00PM", "4:00PM-6:00PM", "6:00PM-8:00PM"})
-        Me.cmbtime.Location = New System.Drawing.Point(757, 579)
+        Me.cmbtime.Location = New System.Drawing.Point(999, 579)
         Me.cmbtime.Name = "cmbtime"
         Me.cmbtime.Size = New System.Drawing.Size(220, 32)
         Me.cmbtime.TabIndex = 46
@@ -113,7 +115,7 @@ Partial Class APPOINTMENT1
         Me.label8.AutoSize = True
         Me.label8.Font = New System.Drawing.Font("Microsoft YaHei", 13.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.label8.ForeColor = System.Drawing.Color.LightSkyBlue
-        Me.label8.Location = New System.Drawing.Point(773, 532)
+        Me.label8.Location = New System.Drawing.Point(1064, 532)
         Me.label8.Name = "label8"
         Me.label8.Size = New System.Drawing.Size(108, 31)
         Me.label8.TabIndex = 45
@@ -275,7 +277,7 @@ Partial Class APPOINTMENT1
         Me.Label11.AutoSize = True
         Me.Label11.Font = New System.Drawing.Font("Microsoft YaHei", 13.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.Label11.ForeColor = System.Drawing.Color.LightSkyBlue
-        Me.Label11.Location = New System.Drawing.Point(347, 532)
+        Me.Label11.Location = New System.Drawing.Point(208, 532)
         Me.Label11.Name = "Label11"
         Me.Label11.Size = New System.Drawing.Size(206, 31)
         Me.Label11.TabIndex = 55
@@ -286,7 +288,7 @@ Partial Class APPOINTMENT1
         Me.payment_type.Font = New System.Drawing.Font("Microsoft YaHei", 10.2!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.payment_type.FormattingEnabled = True
         Me.payment_type.Items.AddRange(New Object() {"Cash Payment", "Online Payment"})
-        Me.payment_type.Location = New System.Drawing.Point(338, 579)
+        Me.payment_type.Location = New System.Drawing.Point(199, 579)
         Me.payment_type.Name = "payment_type"
         Me.payment_type.Size = New System.Drawing.Size(220, 32)
         Me.payment_type.TabIndex = 54
@@ -314,12 +316,32 @@ Partial Class APPOINTMENT1
         Me.txtamt.TabIndex = 56
         Me.txtamt.TextAlign = System.Windows.Forms.HorizontalAlignment.Center
         '
+        'bookingDate
+        '
+        Me.bookingDate.AutoSize = True
+        Me.bookingDate.Font = New System.Drawing.Font("Microsoft YaHei", 13.8!, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
+        Me.bookingDate.ForeColor = System.Drawing.Color.LightSkyBlue
+        Me.bookingDate.Location = New System.Drawing.Point(613, 532)
+        Me.bookingDate.Name = "bookingDate"
+        Me.bookingDate.Size = New System.Drawing.Size(206, 31)
+        Me.bookingDate.TabIndex = 58
+        Me.bookingDate.Text = "BOOKING DATE"
+        '
+        'DateTimePicker1
+        '
+        Me.DateTimePicker1.Location = New System.Drawing.Point(614, 589)
+        Me.DateTimePicker1.Name = "DateTimePicker1"
+        Me.DateTimePicker1.Size = New System.Drawing.Size(200, 22)
+        Me.DateTimePicker1.TabIndex = 59
+        '
         'APPOINTMENT1
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(8.0!, 16.0!)
         Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
         Me.BackColor = System.Drawing.Color.MistyRose
         Me.ClientSize = New System.Drawing.Size(1351, 898)
+        Me.Controls.Add(Me.DateTimePicker1)
+        Me.Controls.Add(Me.bookingDate)
         Me.Controls.Add(Me.amt)
         Me.Controls.Add(Me.txtamt)
         Me.Controls.Add(Me.Label11)
@@ -375,4 +397,6 @@ Partial Class APPOINTMENT1
     Private WithEvents payment_type As System.Windows.Forms.ComboBox
     Private WithEvents amt As System.Windows.Forms.Label
     Private WithEvents txtamt As System.Windows.Forms.TextBox
+    Private WithEvents bookingDate As System.Windows.Forms.Label
+    Friend WithEvents DateTimePicker1 As System.Windows.Forms.DateTimePicker
 End Class

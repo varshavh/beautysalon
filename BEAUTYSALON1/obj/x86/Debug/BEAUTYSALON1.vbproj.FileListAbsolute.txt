@@ -15,3 +15,4 @@ C:\Users\varsha v hegde\onedrive\ドキュメント\visual studio 2010\Projects\
 C:\Users\varsha v hegde\onedrive\ドキュメント\visual studio 2010\Projects\BEAUTYSALON1\BEAUTYSALON1\obj\x86\Debug\BEAUTYSALON1.REGISTER.resources
 C:\Users\varsha v hegde\onedrive\ドキュメント\visual studio 2010\Projects\BEAUTYSALON1\BEAUTYSALON1\obj\x86\Debug\BEAUTYSALON1.MYBOOKINGS.resources
 C:\Users\varsha v hegde\onedrive\ドキュメント\visual studio 2010\Projects\BEAUTYSALON1\BEAUTYSALON1\obj\x86\Debug\BEAUTYSALON1.ADMINBOOKINGS.resources
+C:\Users\varsha v hegde\onedrive\ドキュメント\visual studio 2010\Projects\BEAUTYSALON1\BEAUTYSALON1\obj\x86\Debug\BEAUTYSALON1.PAYMENTHISTORY.resources

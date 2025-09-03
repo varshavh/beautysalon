@@ -148,7 +148,7 @@ Partial Class MYBOOKINGS
         Me.Controls.Add(Me.label4)
         Me.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None
         Me.Name = "MYBOOKINGS"
-        Me.Text = "VIEWMEMBER"
+        Me.Text = "   "
         Me.WindowState = System.Windows.Forms.FormWindowState.Maximized
         CType(Me.dataGridView1, System.ComponentModel.ISupportInitialize).EndInit()
         CType(Me.bookinglist, System.ComponentModel.ISupportInitialize).EndInit()

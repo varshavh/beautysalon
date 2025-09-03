@@ -3,7 +3,7 @@ Imports System.Text.RegularExpressions
 
 Public Class APPOINTMENT1
     Dim cn As New OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=C:\Users\varsha v hegde\OneDrive\ドキュメント\vspsln.accdb")
-
+    Public Property CallingForm As Form
     ' Public variables to pass appointment data to payment form
     Public Shared AppointmentData As New Dictionary(Of String, String)
 
@@ -23,9 +23,24 @@ Public Class APPOINTMENT1
         ' Initialize payment type dropdown
         InitializePaymentTypes()
 
+        ' Initialize DateTimePicker for booking date
+        InitializeDateTimePicker()
+
         ' Disable amount field so user cannot change it
         txtamt.ReadOnly = True
         txtamt.Enabled = False
+    End Sub
+
+    Private Sub InitializeDateTimePicker()
+        Try
+            ' Set DateTimePicker properties
+            DateTimePicker1.Format = DateTimePickerFormat.Short ' Shows only date (MM/dd/yyyy)
+            DateTimePicker1.Value = DateTime.Now.Date ' Set to current date without time
+            DateTimePicker1.MinDate = DateTime.Now.Date ' Prevent booking past dates
+            DateTimePicker1.MaxDate = DateTime.Now.AddMonths(6) ' Allow booking up to 6 months ahead
+        Catch ex As Exception
+            MsgBox("Error initializing date picker: " & ex.Message, MessageBoxButtons.OK, MessageBoxIcon.Warning)
+        End Try
     End Sub
 
     Private Sub LoadServicesFromDatabase()
@@ -134,6 +149,12 @@ Public Class APPOINTMENT1
                 Exit Sub
             End If
 
+            ' Validate booking date is not in the past
+            If DateTimePicker1.Value.Date < DateTime.Now.Date Then
+                MsgBox("Booking date cannot be in the past!", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                Exit Sub
+            End If
+
             If Not Regex.IsMatch(txtname.Text, "^[A-Za-z\s]+$") Then
                 MsgBox("Name can contain only alphabets", MessageBoxButtons.OK, MessageBoxIcon.Warning)
                 Exit Sub
@@ -154,18 +175,19 @@ Public Class APPOINTMENT1
                 Exit Sub
             End If
 
-            ' Check for duplicate appointments (same email, type, and timing)
+            ' Check for duplicate appointments (same email, type, timing, and booking date)
             cn.Open()
-            Dim checkCmd As New OleDbCommand("SELECT COUNT(*) FROM Appointments WHERE email=@email AND type=@type AND timing=@timing", cn)
+            Dim checkCmd As New OleDbCommand("SELECT COUNT(*) FROM Appointments WHERE email=@email AND type=@type AND timing=@timing AND booking_date=@booking_date", cn)
             checkCmd.Parameters.AddWithValue("@email", txtemail.Text)
             checkCmd.Parameters.AddWithValue("@type", cmbtype.Text)
             checkCmd.Parameters.AddWithValue("@timing", cmbtime.Text)
+            checkCmd.Parameters.AddWithValue("@booking_date", DateTimePicker1.Value.Date.ToString("yyyy-MM-dd"))
 
             Dim existingCount As Integer = CInt(checkCmd.ExecuteScalar())
             cn.Close()
 
             If existingCount > 0 Then
-                MsgBox("Appointment already exists for this email, service type, and timing!", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                MsgBox("Appointment already exists for this email, service type, timing, and date!", MessageBoxButtons.OK, MessageBoxIcon.Warning)
                 Exit Sub
             End If
 
@@ -178,6 +200,7 @@ Public Class APPOINTMENT1
                 StoreAppointmentData()
                 ' Show payment form
                 Dim paymentForm As New PAYMENT()
+                paymentForm.CallingForm = Me
                 paymentForm.Show()
                 Me.Hide()
             End If
@@ -201,14 +224,15 @@ Public Class APPOINTMENT1
         AppointmentData.Add("type", cmbtype.Text)
         AppointmentData.Add("timing", cmbtime.Text)
         AppointmentData.Add("amount", txtamt.Text) ' Also store the amount
+        AppointmentData.Add("booking_date", DateTimePicker1.Value.Date.ToString("yyyy-MM-dd")) ' Store selected booking date
     End Sub
 
     Public Sub SaveAppointment(paymentType As String, paymentId As String)
         Try
             cn.Open()
 
-            ' Insert appointment - now including amount
-            Dim cmd As New OleDbCommand("INSERT INTO Appointments(cname,age,phone,email,type,timing,booking_date,payment_type,payment_id,amount)VALUES(@name,@age,@phone,@email,@type,@timing,@booking_date,@payment_type,@payment_id,@amount)", cn)
+            ' FIXED: Insert appointment with correct parameter order matching the column order
+            Dim cmd As New OleDbCommand("INSERT INTO Appointments(cname,age,phone,email,type,timing,booking_date,booked_date,payment_type,payment_id,amount)VALUES(@name,@age,@phone,@email,@type,@timing,@booking_date,@booked_date,@payment_type,@payment_id,@amount)", cn)
 
             ' Use stored data if available (for online payment), otherwise use form data
             If AppointmentData.Count > 0 Then
@@ -218,6 +242,17 @@ Public Class APPOINTMENT1
                 cmd.Parameters.AddWithValue("@email", AppointmentData("email"))
                 cmd.Parameters.AddWithValue("@type", AppointmentData("type"))
                 cmd.Parameters.AddWithValue("@timing", AppointmentData("timing"))
+                cmd.Parameters.AddWithValue("@booking_date", AppointmentData("booking_date")) ' User selected date
+                cmd.Parameters.AddWithValue("@booked_date", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")) ' Current timestamp
+                cmd.Parameters.AddWithValue("@payment_type", paymentType)
+
+                ' Set payment_id to null/empty for cash, actual ID for online
+                If paymentId = "" Then
+                    cmd.Parameters.AddWithValue("@payment_id", DBNull.Value)
+                Else
+                    cmd.Parameters.AddWithValue("@payment_id", paymentId)
+                End If
+
                 cmd.Parameters.AddWithValue("@amount", Convert.ToDecimal(AppointmentData("amount")))
             Else
                 cmd.Parameters.AddWithValue("@name", txtname.Text)
@@ -226,17 +261,18 @@ Public Class APPOINTMENT1
                 cmd.Parameters.AddWithValue("@email", txtemail.Text)
                 cmd.Parameters.AddWithValue("@type", cmbtype.Text)
                 cmd.Parameters.AddWithValue("@timing", cmbtime.Text)
+                cmd.Parameters.AddWithValue("@booking_date", DateTimePicker1.Value.Date.ToString("yyyy-MM-dd")) ' User selected date
+                cmd.Parameters.AddWithValue("@booked_date", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss")) ' Current timestamp
+                cmd.Parameters.AddWithValue("@payment_type", paymentType)
+
+                ' Set payment_id to null/empty for cash, actual ID for online
+                If paymentId = "" Then
+                    cmd.Parameters.AddWithValue("@payment_id", DBNull.Value)
+                Else
+                    cmd.Parameters.AddWithValue("@payment_id", paymentId)
+                End If
+
                 cmd.Parameters.AddWithValue("@amount", Convert.ToDecimal(txtamt.Text))
-            End If
-
-            cmd.Parameters.AddWithValue("@booking_date", DateTime.Now.ToString("yyyy-MM-dd HH:mm:ss"))
-            cmd.Parameters.AddWithValue("@payment_type", paymentType)
-
-            ' Set payment_id to null/empty for cash, actual ID for online
-            If paymentId = "" Then
-                cmd.Parameters.AddWithValue("@payment_id", DBNull.Value)
-            Else
-                cmd.Parameters.AddWithValue("@payment_id", paymentId)
             End If
 
             cmd.ExecuteNonQuery()
@@ -256,7 +292,8 @@ Public Class APPOINTMENT1
             cn.Close()
 
             Dim customerName As String = If(AppointmentData.Count > 0, AppointmentData("name"), txtname.Text)
-            MsgBox("Appointment Successful for " & customerName & "!!!", MessageBoxButtons.OK, MessageBoxIcon.Information)
+            Dim bookingDate As String = If(AppointmentData.Count > 0, AppointmentData("booking_date"), DateTimePicker1.Value.Date.ToString("yyyy-MM-dd"))
+            MsgBox("Appointment Successful for " & customerName & " on " & DateTime.Parse(bookingDate).ToString("dd/MM/yyyy") & "!!!", MessageBoxButtons.OK, MessageBoxIcon.Information)
 
             ' Ask if user wants to book another appointment
             Dim result As DialogResult = MsgBox("Do you want to book another appointment?", MessageBoxButtons.YesNo, MessageBoxIcon.Question)
@@ -266,7 +303,13 @@ Public Class APPOINTMENT1
                 AppointmentData.Clear()
             Else
                 ' Go back to main form
-                MAINFORM.Show()
+                If CallingForm IsNot Nothing Then
+                    CallingForm.Show()
+                Else
+                    ' Fallback - create new MAINFORM if no calling form reference
+                    Dim mainForm As New MAINFORM()
+                    mainForm.Show()
+                End If
                 Me.Hide()
                 AppointmentData.Clear()
             End If
@@ -279,13 +322,13 @@ Public Class APPOINTMENT1
             End If
         End Try
     End Sub
-
     Private Sub ClearAppointmentFields()
         ' Clear only appointment-specific fields, keep user details prefilled
         cmbtype.SelectedIndex = -1
         cmbtime.SelectedIndex = -1
         payment_type.SelectedIndex = -1
         txtamt.Clear() ' Also clear the amount
+        DateTimePicker1.Value = DateTime.Now.Date ' Reset to current date
 
         ' Set focus back to appointment type
         If cmbtype.Items.Count > 0 Then
@@ -317,11 +360,12 @@ Public Class APPOINTMENT1
         cmbtime.SelectedIndex = -1
         payment_type.SelectedIndex = -1
         txtamt.Clear()
+        DateTimePicker1.Value = DateTime.Now.Date ' Reset to current date
     End Sub
 
     Private Sub btnback_Click(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles btnback.Click
-        MAINFORM.Show()
         Me.Hide()
+        CallingForm.Show()
     End Sub
 
     Private Sub txtamt_TextChanged(ByVal sender As System.Object, ByVal e As System.EventArgs) Handles txtemail.TextChanged
@@ -341,6 +385,16 @@ Public Class APPOINTMENT1
         End If
     End Sub
 
+    Public Sub back_main_form()
+        If CallingForm IsNot Nothing Then
+            CallingForm.Show()
+        Else
+            ' Fallback - create new MAINFORM if no calling form reference
+            Dim mainForm As New MAINFORM()
+            mainForm.Show()
+        End If
+    End Sub
+
     Private Sub ComboBox1_SelectedIndexChanged(sender As System.Object, e As System.EventArgs) Handles payment_type.SelectedIndexChanged
         ' Optional: You can add logic here to show/hide amount field based on payment type
     End Sub
@@ -353,5 +407,18 @@ Public Class APPOINTMENT1
     End Sub
 
     Private Sub Label12_Click(sender As System.Object, e As System.EventArgs) Handles amt.Click
+    End Sub
+
+    Private Sub DateTimePicker1_ValueChanged(sender As System.Object, e As System.EventArgs) Handles DateTimePicker1.ValueChanged
+        ' Optional: Add validation or logic when date changes
+        Try
+            ' Ensure selected date is not in the past
+            If DateTimePicker1.Value.Date < DateTime.Now.Date Then
+                MsgBox("Please select a current or future date for the appointment.", MessageBoxButtons.OK, MessageBoxIcon.Warning)
+                DateTimePicker1.Value = DateTime.Now.Date
+            End If
+        Catch ex As Exception
+            ' Handle any date validation errors
+        End Try
     End Sub
 End Class
